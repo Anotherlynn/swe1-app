@@ -10,8 +10,8 @@ install:
 # Set max line length for flake8 to 88 to match black.
 
 before_script:
-  - python manage.py migrate
-  - python manage.py collectstatic --noinput
+  # - python manage.py migrate
+  # - python manage.py collectstatic --noinput
 before_deploy: "echo 'ready?'"
 
 after_deploy:
