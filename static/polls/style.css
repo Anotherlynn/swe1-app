@@ -1,0 +1,10 @@
+body {
+    background-image: url("/staticfiles/polls/images/VCG41N915594800.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+li a {
+    color: green;
+}
