@@ -2,7 +2,7 @@ language: python
 python:
   - "3.9"
 before_install:
-  - source ~/eb-virt/bin/activate
+  # - source ~/eb-virt/bin/activate
 # command to install dependencies
 install:
   - pip install -r requirements.txt>
