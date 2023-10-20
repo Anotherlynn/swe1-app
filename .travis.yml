@@ -3,7 +3,7 @@ dist: bionic
 python:
   - "3.11"
 before_install:
-  - source eb-virt/bin/activate
+  # - source ~/eb-virt/python3.11/bin/activate
   - pip install 'urllib3<2.0'
   - sudo apt-get update
   - sudo apt-get install -y sqlite3 libsqlite3-dev
@@ -16,8 +16,9 @@ install:
 # Set max line length for flake8 to 88 to match black.
 
 before_script:
-  - python manage.py migrate
-  - python manage.py collectstatic --noinput
+  - source ~/virtualenv/python3.11/bin/activate
+  - python3 manage.py migrate
+  - python3 manage.py collectstatic --noinput
 before_deploy: "echo 'ready?'"
 
 after_deploy:
