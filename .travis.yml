@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.9"
+  - "3.11"
 before_install:
   # - source ~/eb-virt/bin/activate
 # command to install dependencies
