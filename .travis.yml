@@ -10,7 +10,7 @@ install:
 # Set max line length for flake8 to 88 to match black.
 
 before_script:
-  - python3 manage.py migrate
+  # - python3 manage.py migrate
   # - python manage.py collectstatic --noinput
 before_deploy: "echo 'ready?'"
 
@@ -21,9 +21,9 @@ after_deploy:
 deploy:
   provider: elasticbeanstalk
   access_key_id:
-    secure: "AKIASDF6ZWVYUF6ULQPF"
+    secure: "your_access_key"
   secret_access_key:
-    secure: "8kEARgfObFCIdD60PYBm7LR230mAevrD6NY4cBUO"
+    secure: "your_secret_key"
   region: "us-east-1"
   app: "mysite"
   env: "mysite-dev"
