@@ -1,9 +1,12 @@
 language: python
 python:
-  - "3.11-dev"
+  - "3.9"
 before_install:
-  # - source ~/eb-virt/bin/activate
-# command to install dependencies
+  - pip install 'urllib3<2.0'
+  - sudo apt-get update
+  - sudo apt-get install -y sqlite3
+  # Verify SQLite version
+  - sqlite3 --version
 install:
   - pip install -r requirements.txt
 # command to run tests
@@ -21,13 +24,13 @@ after_deploy:
 deploy:
   provider: elasticbeanstalk
   access_key_id:
-    secure: "AWS_ACCESS_KEY_ID"
+    secure: "$AWS_ACCESS_KEY_ID"
   secret_access_key:
-    secure: "AWS_SECRET_ACCESS_KEY"
+    secure: "$AWS_SECRET_ACCESS_KEY"
   region: "us-east-1"
   app: "mysite"
   env: "mysite-dev2"
-  bucket_name: "S3_BUCKET_NAME"
+  bucket_name: "$S3_BUCKET_NAME"
   on:
     branch: master # Or whichever branch you want to deploy from.
 
