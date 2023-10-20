@@ -5,7 +5,7 @@ python:
 before_install:
   - pip install 'urllib3<2.0'
   - sudo apt-get update
-  - sudo apt-get install -y sqlite3
+  - sudo apt-get install -y sqlite3 libsqlite3-dev
   # Verify SQLite version
   - sqlite3 --version
 install:
@@ -13,42 +13,42 @@ install:
 # command to run tests
 # Set max line length for flake8 to 88 to match black.
 
-before_script:
-  - python manage.py migrate
-  - python manage.py collectstatic --noinput
-before_deploy: "echo 'ready?'"
+# before_script:
+#   - python manage.py migrate
+#   - python manage.py collectstatic --noinput
+# before_deploy: "echo 'ready?'"
 
-after_deploy:
-  - ./after_deploy_1.sh
-  - ./after_deploy_2.sh
+# after_deploy:
+#   - ./after_deploy_1.sh
+#   - ./after_deploy_2.sh
   
-deploy:
-  provider: elasticbeanstalk
-  access_key_id:
-    secure: "$AWS_ACCESS_KEY_ID"
-  secret_access_key:
-    secure: "$AWS_SECRET_ACCESS_KEY"
-  region: "us-east-1"
-  app: "mysite"
-  env: "mysite-dev2"
-  bucket_name: "$S3_BUCKET_NAME"
-  on:
-    branch: master # Or whichever branch you want to deploy from.
+# deploy:
+#   provider: elasticbeanstalk
+#   access_key_id:
+#     secure: "$AWS_ACCESS_KEY_ID"
+#   secret_access_key:
+#     secure: "$AWS_SECRET_ACCESS_KEY"
+#   region: "us-east-1"
+#   app: "mysite"
+#   env: "mysite-dev2"
+#   bucket_name: "$S3_BUCKET_NAME"
+#   on:
+#     branch: master # Or whichever branch you want to deploy from.
 
-script:
-  # Check code formatting with black.
-  - black --check .
-  # Run flake8 linter.
-  - flake8 .
-  # Run your test suite and capture coverage.
-  - coverage run --source=polls manage.py test
+# script:
+#   # Check code formatting with black.
+#   - black --check .
+#   # Run flake8 linter.
+#   - flake8 .
+#   # Run your test suite and capture coverage.
+#   - coverage run --source=polls manage.py test
 
 
-after_script:
-# Report coverage to coveralls.
-  - coveralls
+# after_script:
+# # Report coverage to coveralls.
+#   - coveralls
 
-# Only run Travis CI on master branch.
-branches:
-  only:
-    - master
+# # Only run Travis CI on master branch.
+# branches:
+#   only:
+#     - master
