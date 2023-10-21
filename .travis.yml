@@ -11,19 +11,15 @@ before_install:
   - sqlite3 --version
   # - pip freeze > requirements.txt
 install:
-  # - pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 before_script:
   # - source ~/virtualenv/python3.11/bin/activate
-  - pip install -r requirements.txt
-  - python3 manage.py migrate
-  - python3 manage.py collectstatic --noinput
+  # - pip install -r requirements.txt
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
 before_deploy: "echo 'ready?'"
 
-after_deploy:
-  - ./after_deploy_1.sh
-  - ./after_deploy_2.sh
-  
 deploy:
   provider: elasticbeanstalk
   access_key_id:
@@ -34,8 +30,6 @@ deploy:
   app: "mysite"
   env: "mysite-dev2"
   bucket_name: "$S3_BUCKET_NAME"
-  on:
-    branch: master # Or whichever branch you want to deploy from.
 
 script:
   # Check code formatting with black.
@@ -44,7 +38,6 @@ script:
   - flake8 .
   # Run your test suite and capture coverage.
   - coverage run --source=polls manage.py test
-
 
 after_script:
 # Report coverage to coveralls.
