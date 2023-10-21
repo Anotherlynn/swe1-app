@@ -49,8 +49,3 @@ script:
 after_script:
 # Report coverage to coveralls.
   - coveralls
-
-# Only run Travis CI on master branch.
-branches:
-  only:
-    - master
