@@ -14,7 +14,7 @@ install:
   # - pip install -r requirements.txt
 
 before_script:
-  - source ~/virtualenv/python3.11/bin/activate
+  # - source ~/virtualenv/python3.11/bin/activate
   - pip install -r requirements.txt
   - python3 manage.py migrate
   - python3 manage.py collectstatic --noinput
