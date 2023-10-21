@@ -12,14 +12,7 @@ before_install:
   # - pip freeze > requirements.txt
 install:
   - pip install -r requirements.txt
-
-before_script:
-  # - source ~/virtualenv/python3.11/bin/activate
-  # - pip install -r requirements.txt
-  - python manage.py migrate
-  - python manage.py collectstatic --noinput
-before_deploy: "echo 'ready?'"
-
+  
 deploy:
   provider: elasticbeanstalk
   access_key_id:
@@ -30,6 +23,14 @@ deploy:
   app: "mysite"
   env: "mysite-dev2"
   bucket_name: "$S3_BUCKET_NAME"
+
+before_script:
+  # - source ~/virtualenv/python3.11/bin/activate
+  # - pip install -r requirements.txt
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
+before_deploy: "echo 'ready?'"
+
 
 script:
   # Check code formatting with black.
