@@ -11,12 +11,11 @@ before_install:
   - sqlite3 --version
   - pip freeze > requirements.txt
 install:
-  - pip install -r requirements.txt
-# command to run tests
-# Set max line length for flake8 to 88 to match black.
+  # - pip install -r requirements.txt
 
 before_script:
   - source ~/virtualenv/python3.11/bin/activate
+  - pip install -r requirements.txt
   - python3 manage.py migrate
   - python3 manage.py collectstatic --noinput
 before_deploy: "echo 'ready?'"
